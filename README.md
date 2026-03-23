@@ -1,13 +1,35 @@
-# Python System Monitor
+# ⚠️ System Alert Logic (DevOps Incident Response)
+A Python-based monitoring tool designed to track system health and trigger automated alerts based on resource thresholds. This project focuses on **proactive incident management** for Linux and Android (Termux) environments.
 
-This is a simple automation tool I developed to keep track of my system's resources. It's designed to give a quick status report and warn me if my storage is getting too full.
+## 🛠️ Features
+- **OS Diagnostics:** Real-time fetching of kernel and node information using the `platform` module.
+- **Storage Threshold Monitoring:** Automated disk space calculation with built-in alert logic for high usage (>80%).
+- **Hardware Integration:** Battery level and charging status tracking via `Termux:API`.
+- **Automated Alerts:** Visual indicators (⚠️/✅) for critical system states to prevent downtime.
 
-## What it does:
-- Fetches OS and Node information using the `platform` module.
-- Calculates Disk Space (Total, Used, and Free) in GB.
-- Includes a conditional alert that triggers a warning if disk usage goes above 80%.
+## 📂 Project Structure
+- `system_informant.py`: The core automation engine for resource auditing and alerting.
+- `.github/workflows/`: (Optional) CI/CD pipeline for script validation.
 
-## How to use:
-1. Clone this repo to your machine or Termux.
-2. Run the script: `python system_informant.py`
+## 🚀 Getting Started
+1. **Clone the repository:**
+   `git clone https://github.com/eunicerobles638-cloud/system-alert-logic.git`
+2. **Navigate to the directory:**
+   `cd system-alert-logic`
+3. **Run the auditor:**
+   `python system_informant.py`
+
+## 📊 Sample Output
+```text
+==========================================
+      SYSTEM INFORMANT v2.0 (DEVOPS)
+==========================================
+[+] OS: Linux 4.19.191
+[+] Node: localhost
+
+[+] STORAGE: 87GB / 111GB (78.4%)
+✅ Storage status is OPTIMAL.
+
+[+] BATTERY: 66% (DISCHARGING)
+==========================================
 
