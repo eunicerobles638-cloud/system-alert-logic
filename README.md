@@ -1,35 +1,34 @@
-# ⚠️ System Alert Logic (DevOps Incident Response)
-A Python-based monitoring tool designed to track system health and trigger automated alerts based on resource thresholds. This project focuses on **proactive incident management** for Linux and Android (Termux) environments.
+# System Alert Logic ⚠️
+A Python script I wrote to keep an eye on my system resources. It checks the OS, storage, and RAM, and tells me if something is hitting its limit. 
 
-## 🛠️ Features
-- **OS Diagnostics:** Real-time fetching of kernel and node information using the `platform` module.
-- **Storage Threshold Monitoring:** Automated disk space calculation with built-in alert logic for high usage (>80%).
-- **Hardware Integration:** Battery level and charging status tracking via `Termux:API`.
-- **Automated Alerts:** Visual indicators (⚠️/✅) for critical system states to prevent downtime.
+I built this as part of my DevOps journey to automate basic server health checks.
 
-## 📂 Project Structure
-- `system_informant.py`: The core automation engine for resource auditing and alerting.
-- `.github/workflows/`: (Optional) CI/CD pipeline for script validation.
+### What it does:
+* **System Info:** Pulls OS and Node data using Python's `platform` module.
+* **Disk Monitoring:** Checks if my storage is over 80%. If it is, it triggers a warning.
+* **RAM Check:** Reads `/proc/meminfo` to see if the memory is getting crowded.
+* **Status Icons:** Uses simple ⚠️ and ✅ so I can see the status at a glance.
 
-## 🚀 Getting Started
-1. **Clone the repository:**
-   `git clone https://github.com/eunicerobles638-cloud/system-alert-logic.git`
-2. **Navigate to the directory:**
+### How to run it:
+1. **Clone the repo:**
+   `git clone https://github.com/YOUR_USERNAME/system-alert-logic.git`
+2. **Go to the folder:**
    `cd system-alert-logic`
-3. **Run the auditor:**
+3. **Run it:**
    `python system_informant.py`
 
-## 📊 Sample Output
+### Sample Output:
 ```text
 ==========================================
       SYSTEM INFORMANT v2.0 (DEVOPS)
 ==========================================
-[+] OS: Linux 4.19.191
-[+] Node: localhost
+[+] OS: Linux 5.15.0
+[+] Node: dev-workstation
 
-[+] STORAGE: 87GB / 111GB (78.4%)
+[+] STORAGE: 120GB / 500GB (24.0%)
 ✅ Storage status is OPTIMAL.
 
-[+] BATTERY: 66% (DISCHARGING)
+[+] MEMORY USAGE: 42.5%
+✅ Memory status is STABLE.
 ==========================================
 
