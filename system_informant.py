@@ -1,29 +1,43 @@
+import os
 import platform
 import shutil
-import os
-from datetime import datetime
+import subprocess
+import json
 
-def generate_report():
-    print("==================================================================")
-    print(f"   SYSTEM REPORT - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-    print("==================================================================")
+def get_system_info():
+    print("\n" + "="*40)
+    print("      SYSTEM INFORMANT v2.0 (DEVOPS)")
+    print("="*40)
 
-    # 1. OS Information
     print(f"[+] OS: {platform.system()} {platform.release()}")
     print(f"[+] Node: {platform.node()}")
 
-    # 2. Disk Space Monitoring (Professional way)
     total, used, free = shutil.disk_usage("/")
-    print(f"[+] Disk Total: {total // (2**30)} GB")
-    print(f"[+] Disk Used: {used // (2**30)} GB")
-    print(f"[+] Disk Free: {free // (2**30)} GB")
-
-    # 3. Simple Alert Logic
-    usage_percent = (used / total) * 100
-    if usage_percent > 80:
-        print("⚠️  WARNING: Disk usage is above 80%!")
+    percent_used = (used / total) * 100
+    print(f"\n[+] STORAGE: {used//(2**30)}GB / {total//(2**30)}GB ({percent_used:.1f}%)")
+    
+    if percent_used > 80:
+        print("⚠️  ALERT: Disk usage is HIGH!")
     else:
-        print("✅ Storage health is GOOD.")
+        print("✅ Storage status is OPTIMAL.")
+
+    try:
+        battery_raw = subprocess.check_output(['termux-battery-status']).decode('utf-8')
+        batt_data = json.loads(battery_raw)
+        level = batt_data['percentage']
+        status = batt_data['status']
+        
+        print(f"\n[+] BATTERY: {level}% ({status})")
+        
+        if level < 20 and status != "PLUGGED":
+            print("⚠️  CRITICAL: Low battery!")
+        elif status == "CHARGING":
+            print("⚡ System is currently CHARGING.")
+    except:
+        print("\n[!] Note: Termux:API not detected.")
+
+    print("="*40 + "\n")
 
 if __name__ == "__main__":
-    generate_report()
+    get_system_info()
+
