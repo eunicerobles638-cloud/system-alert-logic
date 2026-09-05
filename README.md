@@ -27,7 +27,7 @@ python3 -m pytest test_system_informant.py -v
 Knowing when a system is running low on disk space or memory is a basic but essential part of infrastructure monitoring. This script automates that check, similar to what real health-check scripts do in DevOps environments before something actually breaks.
 
 ### Sample Output:
-\`\`\`
+```
 ========================================
       SYSTEM INFORMANT v2.0 (DEVOPS)
       Environment: Linux Standard
@@ -44,4 +44,4 @@ Knowing when a system is running low on disk space or memory is a basic but esse
 ========================================
       MONITORING STATUS: ACTIVE
 ========================================
-\`\`\`
+
